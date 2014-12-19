@@ -33,7 +33,12 @@ class tx_fbreports_report_status_typo3statusv4 extends tx_reports_reports_status
 		if ($typo3ReleaseInformation === FALSE) {
 			return t3lib_div::makeInstance('tx_reports_reports_status_Status', 'TYPO3', TYPO3_version, '', tx_reports_reports_status_Status::NOTICE);
 		}
+
+		// no release information available for this version. Maybe on a development release.
 		$releaseInformation = $typo3ReleaseInformation[$this->getCurrentMajorVersion()];
+		if (empty($releaseInformation)) {
+			return t3lib_div::makeInstance('tx_reports_reports_status_Status', 'TYPO3', TYPO3_version, $this->getLanguageService()->getLL('status_noReleaseInformation'), tx_reports_reports_status_Status::NOTICE);
+		}
 
 		$releasesOfCurrentVersion = $releaseInformation['releases'];
 		$latestVersionNumber = $releaseInformation['stable'];

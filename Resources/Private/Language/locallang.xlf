@@ -10,8 +10,11 @@
 				<source>The TYPO3 version you're using is outdated. You should update to a supported version, e.g. %s</source>
 			</trans-unit>
 			 <trans-unit id="status_typo3VersionUpToDate" xml:space="preserve">
-					 <source>The TYPO3 version is up to date.</source>
+				 <source>The TYPO3 version is up to date.</source>
 			 </trans-unit>
+			<trans-unit id="status_noReleaseInformation" xml:space="preserve">
+				<source>No Release Information for this version available. This should not happen on a production system. Maybe on a development release?</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

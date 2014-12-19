@@ -38,7 +38,12 @@ class Typo3Status extends \TYPO3\CMS\Reports\Report\Status\Typo3Status {
 		if ($typo3ReleaseInformation === FALSE) {
 			return GeneralUtility::makeInstance('TYPO3\\CMS\\Reports\\Status', 'TYPO3', TYPO3_version, '', Status::NOTICE);
 		}
+
+		// no release information available for this version. Maybe on a development release.
 		$releaseInformation = $typo3ReleaseInformation[$this->getCurrentMajorVersion()];
+		if (empty($releaseInformation)) {
+			return GeneralUtility::makeInstance('TYPO3\\CMS\\Reports\\Status', 'TYPO3', TYPO3_version, LocalizationUtility::translate('status_noReleaseInformation', 'fb_reports'), Status::NOTICE);
+		}
 
 		$releasesOfCurrentVersion = $releaseInformation['releases'];
 		$latestVersionNumber = $releaseInformation['stable'];

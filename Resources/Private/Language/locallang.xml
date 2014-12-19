@@ -3,6 +3,7 @@
 	<data type="array">
 		<languageKey index="default" type="array">
 			<label index="status_typo3VersionOld">The latest TYPO3 version is %s</label>
+			<label index="status_noReleaseInformation">TNo Release Information for this version available. This should not happen on a production system. Maybe on a development release?</label>
 			<label index="status_typo3VersionOutdated">The TYPO3 version you're using is outdated. You should update to a supported version, e.g. %s</label>
 			<label index="status_typo3VersionUpToDate">The TYPO3 version is up to date.</label>
 		</languageKey>

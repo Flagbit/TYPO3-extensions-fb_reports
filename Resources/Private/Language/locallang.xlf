@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-10-21T18:20:51Z" product-name="fb-reports">
+		<header/>
+		<body>
+			<trans-unit id="status_typo3VersionOld" xml:space="preserve">
+				<source>The latest TYPO3 version is %s</source>
+			</trans-unit>
+			<trans-unit id="status_typo3VersionOutdated" xml:space="preserve">
+				<source>The TYPO3 version you're using is outdated. You should update to a supported version, e.g. %s</source>
+			</trans-unit>
+			 <trans-unit id="status_typo3VersionUpToDate" xml:space="preserve">
+					 <source>The TYPO3 version is up to date.</source>
+			 </trans-unit>
+		</body>
+	</file>
+</xliff>

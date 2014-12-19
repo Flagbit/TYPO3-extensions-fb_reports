@@ -1,0 +1,2 @@
+# cat=basic/enable; type=string; label=URL for version information json
+versionInformationJson = http://get.typo3.org/json

@@ -15,6 +15,27 @@
 			<trans-unit id="status_noReleaseInformation" xml:space="preserve">
 				<source>No Release Information for this version available. This should not happen on a production system. Maybe on a development release?</source>
 			</trans-unit>
+			<trans-unit id="status_listFilesInFolders" xml:space="preserve">
+				<source>List files in folders</source>
+			</trans-unit>
+			<trans-unit id="status_listFilesInFoldersInfo" xml:space="preserve">
+				<source>Files and folders in location %1$s can be listed. Please set "Options -Indexes" in your .htaccess file or put empty index.html file inside those folder(s).</source>
+			</trans-unit>
+			<trans-unit id="status_sensitiveFilesDownloadable" xml:space="preserve">
+				<source>Sensitive files downloadable</source>
+			</trans-unit>
+			<trans-unit id="status_sensitiveFilesDownloadableInfo" xml:space="preserve">
+				<source><![CDATA[Some files with sensitive information can be downloaded. Files treated as sensitive are: %1$s, which are placed in root folder of website and in first level of subfolders.
+				<br /><br />Below there is part of the sensitive files that can be downloaded from your website:
+				<br />%2$s
+				<br /><br />Remove them or please consider some .htaccess settings to prevent their downloading.
+				<br /><br />Example of .htaccess protection:
+				<br />&lt;FilesMatch "\.(sql|sql.gz)$"&gt;
+				<br />Order Allow,Deny
+				<br />Deny from all
+				<br />&lt;/FilesMatch&gt;
+				]]></source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

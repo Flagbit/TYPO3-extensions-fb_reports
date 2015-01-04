@@ -35,47 +35,8 @@ class SecurityStatus implements \TYPO3\CMS\Reports\StatusProviderInterface {
 	 */
 	public function getStatus() {
 		$statuses = array();
-		$statuses['listFilesInFolders'] = $this->listFilesInFoldersStatus();
 		$statuses['sensitiveFilesDownloadable'] = $this->sensitiveFilesDownloadableStatus();
 		return $statuses;
-	}
-
-	/**
-	 * Checks for the ability to list files in some folders like typo3conf/ typo3temp/
-	 *
-	 * @return Status An object representing whether typo3conf/, typo3temp/ can be listed
-	 */
-	protected function listFilesInFoldersStatus() {
-		$value = $this->getLanguageService()->getLL('status_disabled');
-		$severity = Status::OK;
-		$message = '';
-		$foldersToTest = array(
-			'typo3conf',
-			'typo3temp',
-		);
-
-		$insecureFolders = array();
-		$typo3RequestHost = GeneralUtility::getIndpEnv('TYPO3_REQUEST_HOST');
-		foreach ($foldersToTest as $folderToTest) {
-			$urlToTest = $typo3RequestHost . '/' . $folderToTest . '/';
-			$headers = GeneralUtility::getUrl($urlToTest, 2);
-			if (preg_match('/^.*200.*\\n/', $headers)) {
-				if (strlen(GeneralUtility::getUrl($urlToTest)) > 0) {
-					$insecureFolders[$folderToTest] = $urlToTest;
-				}
-			}
-		}
-
-		if (!empty($insecureFolders)) {
-			$value = $this->getLanguageService()->getLL('status_insecure');
-			$severity = Status::ERROR;
-			$insecureFoldersLinks = array();
-			foreach ($insecureFolders as $insecureFolder) {
-				$insecureFoldersLinks[] = '<a href="' . htmlspecialchars($insecureFolder) . '" >' . $insecureFolder . '</a>';
-			}
-			$message = sprintf(LocalizationUtility::translate('status_listFilesInFoldersInfo', 'fb_reports'), implode(', ', $insecureFoldersLinks));
-		}
-		return GeneralUtility::makeInstance('TYPO3\\CMS\\Reports\\Status', LocalizationUtility::translate('status_listFilesInFolders', 'fb_reports'), $value, $message, $severity);
 	}
 
 	/**

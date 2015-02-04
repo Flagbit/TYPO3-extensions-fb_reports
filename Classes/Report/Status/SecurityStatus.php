@@ -82,7 +82,7 @@ class SecurityStatus implements \TYPO3\CMS\Reports\StatusProviderInterface {
 			foreach ($insecureFilesToDownload as $insecureFileToDownload) {
 				$insecureFileToDownloadLinks[] = '<a href="' . htmlspecialchars($insecureFileToDownload) . '" >' . $insecureFileToDownload . '</a>';
 			}
-			$message = sprintf(LocalizationUtility::translate('status_sensitiveFilesDownloadableInfo', 'fb_reports'), $this->filesExtensionsToFind, implode('<br />', $insecureFileToDownloadLinks));
+			$message = sprintf(LocalizationUtility::translate('status_sensitiveFilesDownloadableInfo', 'fb_reports'), implode(', ', $this->filesExtensionsToFind), implode('<br />', $insecureFileToDownloadLinks));
 		}
 
 		return GeneralUtility::makeInstance('TYPO3\\CMS\\Reports\\Status', LocalizationUtility::translate('status_sensitiveFilesDownloadable', 'fb_reports'), $value, $message, $severity);

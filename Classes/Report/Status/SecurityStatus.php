@@ -49,13 +49,14 @@ class SecurityStatus implements \TYPO3\CMS\Reports\StatusProviderInterface {
 		$severity = Status::OK;
 		$message = '';
 
-		$foldersToSearchForFiles = new \DirectoryIterator(PATH_site);
+		$foldersToSearchForFiles = iterator_to_array(new \FilesystemIterator(PATH_site));
+		$foldersToSearchForFiles[] = new \SplFileInfo(PATH_site);
 
 		$filesToTestDownload = array();
 		foreach ($foldersToSearchForFiles as $folderToSearchForFile) {
-			if($folderToSearchForFile->isDir() && $folderToSearchForFile->getFilename() !== '..') {
+			if($folderToSearchForFile->isDir()) {
 				foreach ($this->filesExtensionsToFind as $fileExtensionToFind) {
-					$iterator = new \GlobIterator(PATH_site . str_replace('./', '', $folderToSearchForFile->getFilename() . '/') . trim($fileExtensionToFind));
+					$iterator = new \GlobIterator($folderToSearchForFile . DIRECTORY_SEPARATOR . trim($fileExtensionToFind));
 					/** @var \SplFileInfo $splFileInfo */
 					foreach ($iterator as $splFileInfo) {
 						$filesToTestDownload[] = substr($splFileInfo->getPathname(), strlen(PATH_site));
